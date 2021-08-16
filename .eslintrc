@@ -25,5 +25,6 @@
     "jest": {
       "version": 27
     }
-  }
+  },
+  "parser": "@babel/eslint-parser"
 }
