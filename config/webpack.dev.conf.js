@@ -1,15 +1,16 @@
-const merge               = require('webpack-merge')
-const baseWebpackConfig   = require('./webpack.base.conf')
-const ESLintPlugin        = require('eslint-webpack-plugin')
+const merge               = require("webpack-merge")
+const baseWebpackConfig   = require("./webpack.base.conf")
+const ESLintPlugin        = require("eslint-webpack-plugin")
 
 const devWebpackConfig = merge(baseWebpackConfig, {
-  mode: 'development',
+  mode: "development",
   output: {
-    publicPath: '/'
+    publicPath: "/"
   },
   devServer: {
     contentBase: baseWebpackConfig.externals.paths.dist,
     port: 8080,
+    historyApiFallback: true,
     overlay: {
       warnings: true,
       errors: true
