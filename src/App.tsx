@@ -1,10 +1,26 @@
 import React from "react"
-import { Button } from "@material-ui/core"
+// @ts-ignore
+import TodoPage from "./views/todoPage.tsx"
 
-const App = () => (
-	<div>
-		<Button color="primary">Hello World</Button>
-	</div>
-)
+import {
+	Switch,
+	Route,
+	Redirect
+} from "react-router-dom"
+
+const App = () => {
+	return (
+		<div>
+			<Switch>
+				<Route path="/">
+					<Redirect to="/todo_page" />
+				</Route>
+				<Route path="/todo_page">
+					<TodoPage />
+				</Route>
+			</Switch>
+		</div>
+	)
+}
 
 export default App

@@ -1,22 +1,24 @@
+// Basic set up
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 import "./index.css"
 // @ts-ignore
 import App from "./App.tsx"
-import { createStore } from "redux"
+
+// Redux
 import { Provider } from "react-redux"
 // @ts-ignore
-import todos from "./store/reducers/index.ts"
+import store from "./store/index.ts"
 
-const store = createStore(
-	todos
-)
+// Router
+import { BrowserRouter as Router } from "react-router-dom"
+
 
 ReactDOM.render(
-	<React.StrictMode>
+	<Router>
 		<Provider store={store}>
 			<App />
-		</Provider>,
-	</React.StrictMode>,
+		</Provider>
+	</Router>,
 	document.getElementById("app")
 )
