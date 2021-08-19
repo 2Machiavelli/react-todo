@@ -11,7 +11,7 @@ import { TextField } from "@material-ui/core"
 
 // Types
 // @ts-ignore
-import { ITodo } from "@/store/types/todos.type"
+import { ITodo } from "@/types/todos.type"
 
 // Redux
 import store from "../store"

@@ -19,7 +19,7 @@ import Typography from "@material-ui/core/Typography"
 
 // Types
 // @ts-ignore
-import { ITodo } from "@/store/types/todos.type"
+import { ITodo } from "@/types/todos.type"
 
 const useStyles = makeStyles({
 	root: {

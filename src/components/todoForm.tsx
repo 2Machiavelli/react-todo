@@ -15,7 +15,7 @@ import { createTodoAction } from "../store/actions/todos.action"
 // Types
 import { useTypedSelector } from "@/hooks/useTypedSelector"
 // @ts-ignore
-import { ITodo } from "@/store/types/todos.type"
+import { ITodo } from "@/types/todos.type"
 
 
 

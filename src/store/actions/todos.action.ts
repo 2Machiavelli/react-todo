@@ -4,7 +4,7 @@ import {
 	COMPLETE_TODO,
 	DELETE_TODO,
 	ITodo
-} from "../types/todos.type"
+} from "../../types/todos.type"
 
 export const createTodoAction = ( todo: ITodo ) => {
 	return {

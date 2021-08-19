@@ -8,7 +8,7 @@ import { Grid } from "@material-ui/core"
 // Types
 import { useTypedSelector } from "@/hooks/useTypedSelector"
 // @ts-ignore
-import { ITodo } from "@/store/types/todos.type"
+import { ITodo } from "@/types/todos.type"
 
 
 const TodoList: React.FC = () => {
