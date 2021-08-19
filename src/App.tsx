@@ -1,25 +1,28 @@
 import React from "react"
-// @ts-ignore
-import TodoPage from "./views/todoPage.tsx"
-
+import TodoPage from "./views/todoPage"
 import {
 	Switch,
 	Route,
 	Redirect
 } from "react-router-dom"
 
+// Material UI
+import { Container } from "@material-ui/core"
+
 const App = () => {
 	return (
-		<div>
+		<Container maxWidth="sm">
 			<Switch>
 				<Route path="/">
 					<Redirect to="/todo_page" />
 				</Route>
+			</Switch>
+			<Switch>
 				<Route path="/todo_page">
 					<TodoPage />
 				</Route>
 			</Switch>
-		</div>
+		</Container>
 	)
 }
 

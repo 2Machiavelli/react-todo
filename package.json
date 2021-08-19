@@ -1,11 +1,11 @@
 {
-  "name": "vue-todo",
+  "name": "react-todo",
   "version": "1.0.0",
   "main": "./src/index.ts",
   "scripts": {
     "dev": "webpack serve --open --config ./config/webpack.dev.conf.js",
     "build": "webpack --config ./config/webpack.build.conf.js",
-    "lint": "eslint ./src --ext .js,.vue --ignore-pattern node_modules/"
+    "lint": "eslint ./src --ext .ts,.tsx,.js,jsx --ignore-pattern node_modules/"
   },
   "author": "https://github.com/2Machiavelli",
   "license": "MIT",
@@ -58,8 +58,11 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
+    "nanoid": "^3.1.25",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "redux-localstorage": "^0.4.1",
+    "reset-css": "^5.0.1"
   }
 }

@@ -1,29 +1,35 @@
-import { CREATE_TODO } from "../types"
+import { 
+	CREATE_TODO,
+	EDIT_TODO,
+	COMPLETE_TODO,
+	DELETE_TODO,
+	ITodo
+} from "../types/todos.type"
 
-export const createTodo = ( todo: any ) => {
-  return {
-    type: CREATE_TODO,
-    payload: todo
-  }
+export const createTodoAction = ( todo: ITodo ) => {
+	return {
+		type: CREATE_TODO,
+		payload: todo
+	}
 }
 
-export const editTodo = ( todo: any ) => {
-  return {
-    type: CREATE_TODO,
-    payload: todo
-  }
+export const editTodoAction = ( todo: ITodo ) => {
+	return {
+		type: EDIT_TODO,
+		payload: todo
+	}
 }
 
-export const completeTodo = ( todo: any ) => {
-  return {
-    type: CREATE_TODO,
-    payload: todo
-  }
+export const completeTodoAction = ( todo: ITodo ) => {
+	return {
+		type: COMPLETE_TODO,
+		payload: todo
+	}
 }
 
-export const deleteTodo = ( todo: any ) => {
-  return {
-    type: CREATE_TODO,
-    payload: todo
-  }
+export const deleteTodoAction = ( todo: ITodo ) => {
+	return {
+		type: DELETE_TODO,
+		payload: todo
+	}
 }

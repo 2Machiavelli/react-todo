@@ -1,14 +1,12 @@
 // Basic set up
 import * as React from "react"
 import * as ReactDOM from "react-dom"
-import "./index.css"
-// @ts-ignore
-import App from "./App.tsx"
+import "reset-css"
+import App from "./App"
 
 // Redux
 import { Provider } from "react-redux"
-// @ts-ignore
-import store from "./store/index.ts"
+import store from "./store/index"
 
 // Router
 import { BrowserRouter as Router } from "react-router-dom"

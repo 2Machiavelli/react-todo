@@ -16,9 +16,6 @@ module.exports = {
   entry: {
     main: `${PATHS.src}/index.tsx`,
   },
-  resolve: {
-    extensions: [".tsx", ".ts", ".js", ".jsx"],
-  },
   output: {
     filename: `${PATHS.assets}js/[name].[contenthash].js`,
     path: PATHS.dist
@@ -86,8 +83,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      "~": PATHS.src
-    }
+      "@": PATHS.src
+    },
+    extensions: [".tsx", ".ts", ".js", ".jsx"]
   },
   plugins: [
     new MiniCssExtractPlugin({
