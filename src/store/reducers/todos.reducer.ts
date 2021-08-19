@@ -34,7 +34,7 @@ const editTodo = (state, action: ITodosAction) => {
 }
 
 const completeTodo = (state, action: ITodosAction) => {
-	const updatedCompletedTodos = [ ...state.completedTodos, action.payload ]
+	const updatedCompletedTodos = [ ...state.completedTodos, { ...action.payload, isCompleted: true } ]
 
 	const updatedTodos = [ ...state.todos.filter((item: ITodo) => item.id != action.payload.id ) ]
 
