@@ -92,6 +92,7 @@ module.exports = {
       filename: `${PATHS.assets}css/[name].[contenthash].css`,
     }),
     new HtmlWebpackPlugin({
+      favicon: `${PATHS.src}/logo.svg`,
       template: `${PATHS.src}/index.html`,
       filename: `index.html`,
       minify: true,
