@@ -6,7 +6,7 @@ export const DELETE_TODO = "TODO/DELETE_TODO"
 
 export interface ITodosAction {
 	type: string,
-	payload?: any
+	payload: ITodo
 }
 
 export interface ITodosState {

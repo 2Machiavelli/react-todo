@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { combineReducers } from "redux"
 import todosReducer from "./todos.reducer"
 
