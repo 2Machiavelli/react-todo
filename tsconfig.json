@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "importsNotUsedAsValues": "preserve",
     "target": "esnext",
     "module": "esnext",
     "strict": true,
@@ -32,9 +33,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.tsx",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "src/**/*.tsx"
   ],
   "exclude": [
     "node_modules"

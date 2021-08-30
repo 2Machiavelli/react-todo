@@ -10,13 +10,15 @@ import { makeStyles } from "@material-ui/core/styles"
 import { TextField } from "@material-ui/core"
 
 // Types
-// @ts-ignore
 import { ITodo } from "@/types/todos.type"
 
 // Redux
-import store from "../store"
 import { editTodoAction } from "../store/actions/todos.action"
+import { useDispatch } from "react-redux"
 
+interface ITodoEditDialogProps {
+	todo: ITodo
+}
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -38,10 +40,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }))
 
-const todoEditDialog = ({todo}) => {
+
+const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo }) => {
 	const [open, setOpen] = useState(false)
 	const [updatedTitle, setTitle] = useState(todo.title)
 	const [updatedDescription, setDescription] = useState(todo.description)
+	const dispatch = useDispatch()
 
 	const handleClickOpen = () => {
 		setOpen(true)
@@ -61,15 +65,50 @@ const todoEditDialog = ({todo}) => {
 		date: Date.now()
 	}
 
-	const save = () => {
-		store.dispatch(editTodoAction(editedTodo))
+	const submitForm = () => {
+		if (!validateForm().isNotValid) {
+			dispatch(editTodoAction(editedTodo))
 
-		handleClose()
+			handleClose()
+		}
+	}
+
+	const validateForm = () => {
+		const trimmedTitle = updatedTitle.trim()
+
+		if (trimmedTitle.length === 0) {
+			return {
+				isNotValid: true,
+				errorText: "this field should not be empty"
+			}
+		}
+
+		if (trimmedTitle.length <= 3) {
+			return {
+				isNotValid: true,
+				errorText: "this field must have 3 or more digits"
+			}
+		}
+
+		if (trimmedTitle.length > 60) {
+			return {
+				isNotValid: true,
+				errorText: "this field must have not more than 60 digits"
+			}
+		}
+
+		return {
+			isNotValid: false
+		}
 	}
 
 	return (
-		<div>
-			<Button size="small" color="primary" onClick={handleClickOpen}>
+		<>
+			<Button 
+				size="small" 
+				color="primary" 
+				onClick={handleClickOpen}
+			>
 				Edit
 			</Button>
 			<Dialog
@@ -79,16 +118,19 @@ const todoEditDialog = ({todo}) => {
 				aria-describedby="alert-dialog-description"
 			>
 				<DialogContent>
-					<form className={classes.form} noValidate>
+					<form 
+						className={classes.form} 
+						noValidate
+					>
 						<TextField
+							error={validateForm().isNotValid}
 							variant="outlined"
 							margin="normal"
+							autoFocus
 							required
 							fullWidth
 							label="Title"
 							name="title"
-							autoComplete="title"
-							autoFocus
 							value={updatedTitle}
 							onChange={event => setTitle(event.target.value)}
 						/>
@@ -98,23 +140,29 @@ const todoEditDialog = ({todo}) => {
 							fullWidth
 							name="description"
 							label="Description"
-							autoComplete="description"
 							value={updatedDescription}
 							onChange={event => setDescription(event.target.value)}
 						/>
 					</form>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleClose} color="primary">
+					<Button 
+						onClick={handleClose} 
+						color="primary"
+					>
 						Cancel
 					</Button>
-					<Button onClick={save} color="primary" autoFocus>
+					<Button 
+						onClick={submitForm} 
+						color="primary" 
+						autoFocus
+					>
 						Save
 					</Button>
 				</DialogActions>
 			</Dialog>
-		</div>
+		</>
 	)
 }
 
-export default todoEditDialog
+export default TodoEditDialog

@@ -7,7 +7,7 @@
   "rules": {
     "quotemark": [ true, "double" ],
     "indent": [ true ],
-    "interface-name": [ false ],
+    "interface-name": [ true, "always-prefix"],
     "arrow-parents": false,
     "object-literal-sort-keys": false
   }

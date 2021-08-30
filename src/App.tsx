@@ -9,7 +9,7 @@ import {
 // Material UI
 import { Container } from "@material-ui/core"
 
-const App = () => {
+const App: React.FC = () => {
 	return (
 		<Container maxWidth="sm">
 			<Switch>

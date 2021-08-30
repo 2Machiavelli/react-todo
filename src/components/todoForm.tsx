@@ -1,5 +1,4 @@
 // Basic Setup
-/* eslint-disable */
 import React, { useState } from "react"
 import { nanoid } from "nanoid"
 
@@ -9,13 +8,11 @@ import {
 	Button,
 } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
-import store from "../store"
 import { createTodoAction } from "../store/actions/todos.action"
 
 // Types
-import { useTypedSelector } from "@/hooks/useTypedSelector"
-// @ts-ignore
-import { ITodo } from "@/types/todos.type"
+import { ITodo } from "../types/todos.type"
+import { useDispatch } from "react-redux"
 
 
 
@@ -40,10 +37,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 }))
 
-const TodoForm = () => {
+const TodoForm: React.FC = () => {
 	const classes = useStyles()
 	let [title, setTitle] = useState("")
 	let [description, setDescription] = useState("")
+	const dispatch = useDispatch()
 
 	const todo: ITodo = {
 		id: nanoid(),
@@ -55,7 +53,7 @@ const TodoForm = () => {
 	
 	const submitForm = () => {
 		if (!validateForm().isNotValid) {
-			store.dispatch(createTodoAction(todo))
+			dispatch(createTodoAction(todo))
 
 			setTitle("")
 			setDescription("")
@@ -92,43 +90,43 @@ const TodoForm = () => {
 	}
 
 	return (
-		<div className="todo-form">
-			<form className={classes.form} id="add-todo-form">
-				<TextField
-					error={validateForm().isNotValid}
-					helperText={validateForm().isNotValid ? validateForm().errorText : ""}
-					variant="outlined"
-					margin="normal"
-					required
-					fullWidth
-					label="Title"
-					name="title"
-					autoComplete="title"
-					autoFocus
-					value={title}
-					onChange={event => setTitle(event.target.value)}
-				/>
-				<TextField
-					variant="outlined"
-					margin="normal"
-					fullWidth
-					name="description"
-					label="Description"
-					autoComplete="description"
-					value={description}
-					onChange={event => setDescription(event.target.value)}
-				/>
-				<Button
-					fullWidth
-					variant="contained"
-					color="primary"
-					className={classes.submit}
-					onClick={submitForm}
-				>
-					Create
-				</Button>
-			</form>
-		</div>
+		<form 
+			className={classes.form} 
+			noValidate
+		>
+			<TextField
+				error={validateForm().isNotValid}
+				helperText={validateForm().isNotValid ? validateForm().errorText : ""}
+				variant="outlined"
+				margin="normal"
+				required
+				fullWidth
+				label="Title"
+				name="title"
+				autoComplete="title"
+				value={title}
+				onChange={event => setTitle(event.target.value)}
+			/>
+			<TextField
+				variant="outlined"
+				margin="normal"
+				fullWidth
+				name="description"
+				label="Description"
+				autoComplete="description"
+				value={description}
+				onChange={event => setDescription(event.target.value)}
+			/>
+			<Button
+				fullWidth
+				variant="contained"
+				color="primary"
+				className={classes.submit}
+				onClick={submitForm}
+			>
+				Create
+			</Button>
+		</form>
 	)
 }
 

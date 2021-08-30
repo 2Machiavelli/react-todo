@@ -40,22 +40,9 @@ module.exports = {
         exclude: "/node_modules/"
       },
       {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: "ts-loader"
-          }
-        ]
-      },
-      {
-        test: /\.ts?$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: "ts-loader"
-          }
-        ]
+        test: /\.(ts|tsx)$/,
+        loader: "ts-loader",
+        exclude: "/node_modules/"
       },
       {
         test: /\.css$/,
@@ -85,7 +72,7 @@ module.exports = {
     alias: {
       "@": PATHS.src
     },
-    extensions: [".tsx", ".ts", ".js", ".jsx"]
+    extensions: [".tsx", ".ts", ".jsx", ".js"]
   },
   plugins: [
     new MiniCssExtractPlugin({

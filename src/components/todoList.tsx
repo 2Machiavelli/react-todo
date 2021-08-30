@@ -6,22 +6,20 @@ import TodoCard from "./todoCard"
 import { Grid } from "@material-ui/core"
 
 // Types
-import { useTypedSelector } from "@/hooks/useTypedSelector"
-// @ts-ignore
+import { useTypedSelector } from "@/hooks/useTypedSelector.hook"
 import { ITodo } from "@/types/todos.type"
 
 
 const TodoList: React.FC = () => {
-	// @ts-ignore
 	const { todos } = useTypedSelector( state => state.todos )
 
 	const allTodosSortedByDate = () => {
 		const sortedTodos = [...todos]
-		return sortedTodos.sort((a, b) =>  b.date - a.date)
+		return sortedTodos.sort((a: ITodo, b: ITodo) =>  b.date - a.date)
 	}
 
 	return (
-		<div className="todo-list" style={{ paddingTop: 20 }}>
+		<div style={{ paddingTop: 20 }}>
 			<Grid
 				container
 				direction="column"

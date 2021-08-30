@@ -1,4 +1,3 @@
-/* eslint-disable */
 import {
 	CREATE_TODO,
 	EDIT_TODO,
@@ -7,7 +6,7 @@ import {
 	ITodosAction,
 	ITodosState,
 	ITodo
-} from "../../types/todos.type";
+} from "../../types/todos.type"
 
 const initialState: ITodosState = {
 	todos: [],
@@ -47,8 +46,6 @@ const deleteTodo = (state, action: ITodosAction) => {
 	return { todos: [ ...updatedTodos ], completedTodos: [ ...state.completedTodos ] }
 }
 
-
-// @ts-ignore
 const todosReducer = (state = initialState, action: ITodosAction): ITodosState => {
 	switch (action.type) {
 	case CREATE_TODO:

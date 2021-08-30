@@ -18,7 +18,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new ESLintPlugin({
-      extensions: ["ts", "js", "tsx", "vue"]
+      extensions: ["ts", "js", "tsx", "jsx"]
     }),
   ]
 })
