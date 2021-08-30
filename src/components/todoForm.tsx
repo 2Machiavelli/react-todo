@@ -1,5 +1,5 @@
 // Basic Setup
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { nanoid } from "nanoid"
 
 // Material UI
@@ -15,33 +15,25 @@ import { ITodo } from "../types/todos.type"
 import { useDispatch } from "react-redux"
 
 
-
-
 const useStyles = makeStyles((theme) => ({
-	paper: {
-		marginTop: theme.spacing(8),
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-	},
-	avatar: {
-		margin: theme.spacing(1),
-		backgroundColor: theme.palette.secondary.main,
-	},
 	form: {
 		width: "100%",
 		marginTop: theme.spacing(1),
 	},
 	submit: {
 		margin: theme.spacing(3, 0, 2),
-	},
+	}
 }))
 
 const TodoForm: React.FC = () => {
 	const classes = useStyles()
+	const dispatch = useDispatch()
+
 	let [title, setTitle] = useState("")
 	let [description, setDescription] = useState("")
-	const dispatch = useDispatch()
+	let [titleDirty, setTitleDirty] = useState(false)
+	let [titleError, setTitleError] = useState("this field should not be empty")
+	let [formValid, setFormValid] = useState(false)
 
 	const todo: ITodo = {
 		id: nanoid(),
@@ -50,43 +42,50 @@ const TodoForm: React.FC = () => {
 		date: Date.now(),
 		isCompleted: false
 	}
+
+	useEffect(() => {
+		
+		if(titleError) {
+			setFormValid(false)
+		} else {
+			setFormValid(true)
+		}
+		
+	}, [titleError])
 	
-	const submitForm = () => {
-		if (!validateForm().isNotValid) {
+	const submitForm = (): void => {
+		if (!titleError) {
 			dispatch(createTodoAction(todo))
 
 			setTitle("")
 			setDescription("")
+			setTitleDirty(false)
+			setTitleError("this field should not be empty")
 		}
 	}
 
-	const validateForm = () => {
-		const trimmedTitle = title.trim()
+	const titleHandler = (e) => {
+		const value = e.target.value.trim()
 
-		if (trimmedTitle.length === 0) {
-			return {
-				isNotValid: true,
-				errorText: "this field should not be empty"
-			}
+		setTitle(e.target.value)
+
+		if (value.length === 0) {
+			return setTitleError("this field should not be empty")
 		}
 
-		if (trimmedTitle.length <= 3) {
-			return {
-				isNotValid: true,
-				errorText: "this field must have 3 or more digits"
-			}
+		if (value.length < 3) {
+			return setTitleError("this field must have 3 or more digits")
 		}
 
-		if (trimmedTitle.length > 60) {
-			return {
-				isNotValid: true,
-				errorText: "this field must have not more than 60 digits"
-			}
+		if (value.length > 60) {
+			return setTitleError("this field must have not more than 60 digits")
 		}
 
-		return {
-			isNotValid: false
-		}
+		setTitleError("")
+	}
+
+	const blurTitle = (): void => {
+		setTitleDirty(true)
 	}
 
 	return (
@@ -95,30 +94,27 @@ const TodoForm: React.FC = () => {
 			noValidate
 		>
 			<TextField
-				error={validateForm().isNotValid}
-				helperText={validateForm().isNotValid ? validateForm().errorText : ""}
+				onBlur={e => blurTitle()}
+				error={titleDirty && !!titleError}
+				helperText={titleDirty ? titleError : ""}
 				variant="outlined"
 				margin="normal"
 				required
 				fullWidth
 				label="Title"
-				name="title"
-				autoComplete="title"
 				value={title}
-				onChange={event => setTitle(event.target.value)}
+				onChange={event => titleHandler(event)}
 			/>
 			<TextField
 				variant="outlined"
 				margin="normal"
 				fullWidth
-				name="description"
 				label="Description"
-				autoComplete="description"
 				value={description}
 				onChange={event => setDescription(event.target.value)}
 			/>
 			<Button
-				fullWidth
+				disabled={!formValid}
 				variant="contained"
 				color="primary"
 				className={classes.submit}

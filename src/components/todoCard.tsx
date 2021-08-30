@@ -21,6 +21,10 @@ import Typography from "@material-ui/core/Typography"
 import { ITodo } from "@/types/todos.type"
 import { useDispatch } from "react-redux"
 
+interface ITodoCardProps {
+	todo: ITodo
+}
+
 const useStyles = makeStyles({
 	root: {
 		width: "100%",
@@ -30,10 +34,6 @@ const useStyles = makeStyles({
 		height: 140,
 	}
 })
-
-interface ITodoCardProps {
-	todo: ITodo
-}
 
 const TodoCard: React.FC<ITodoCardProps> = ({todo}: {todo: ITodo}) => {
 	const classes = useStyles()
