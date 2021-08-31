@@ -6,7 +6,8 @@
   "rules": {
     "quotes": [2, "double", { "avoidEscape": true }],
     "semi": [2, "never"],
-    "no-unused-vars": "warn",
+    "no-unused-vars": "off",
+    "no-undef": "off",
     "indent": ["error", "tab"]
   },
   "env": {
@@ -25,5 +26,6 @@
     "jest": {
       "version": 27
     }
-  }
+  },
+  "parser": "@babel/eslint-parser"
 }

@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
+    "importsNotUsedAsValues": "preserve",
     "target": "esnext",
     "module": "esnext",
     "strict": true,
     "allowJs": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "jsx": "react-jsx",
     "importHelpers": true,
     "moduleResolution": "node",
@@ -32,9 +33,7 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.tsx",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "src/**/*.tsx"
   ],
   "exclude": [
     "node_modules"
