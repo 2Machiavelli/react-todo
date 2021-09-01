@@ -15,6 +15,7 @@ import { ITodo } from "@/types/todos.type"
 // Redux
 import { editTodoAction } from "../store/actions/todos.action"
 import { useDispatch } from "react-redux"
+import useInput from "@/hooks/useInput.hook"
 
 interface ITodoEditDialogProps {
 	todo: ITodo
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo }) => {
 	const [open, setOpen] = useState(false)
-	const [updatedTitle, setTitle] = useState(todo.title)
+	const updatedTitle = useInput(todo.title, { minLength: 5, isEmpty: true, maxLength: 50 })
 	const [updatedDescription, setDescription] = useState(todo.description)
 	const dispatch = useDispatch()
 
@@ -49,47 +50,16 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 
 	const editedTodo: ITodo = {
 		id: todo.id,
-		title: updatedTitle,
+		title: updatedTitle.value,
 		description: updatedDescription,
 		isCompleted: false,
 		date: Date.now()
 	}
 
-	const submitForm = () => {
-		if (!validateForm().isNotValid) {
-			dispatch(editTodoAction(editedTodo))
+	const submit = () => {
+		dispatch(editTodoAction(editedTodo))
 
-			handleClose()
-		}
-	}
-
-	const validateForm = () => {
-		const trimmedTitle = updatedTitle.trim()
-
-		if (trimmedTitle.length === 0) {
-			return {
-				isNotValid: true,
-				errorText: "this field should not be empty"
-			}
-		}
-
-		if (trimmedTitle.length <= 3) {
-			return {
-				isNotValid: true,
-				errorText: "this field must have 3 or more digits"
-			}
-		}
-
-		if (trimmedTitle.length > 60) {
-			return {
-				isNotValid: true,
-				errorText: "this field must have not more than 60 digits"
-			}
-		}
-
-		return {
-			isNotValid: false
-		}
+		handleClose()
 	}
 
 	return (
@@ -113,7 +83,10 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 						noValidate
 					>
 						<TextField
-							error={validateForm().isNotValid}
+							onBlur={e => updatedTitle.onBlur(e)}
+							onChange={e => updatedTitle.onChange(e)}
+							error={ updatedTitle.isDirty && !updatedTitle.isValid }
+							helperText={ updatedTitle.isDirty && !updatedTitle.isValid ? updatedTitle.errorMessage : "" }
 							variant="outlined"
 							margin="normal"
 							autoFocus
@@ -121,8 +94,7 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 							fullWidth
 							label="Title"
 							name="title"
-							value={updatedTitle}
-							onChange={event => setTitle(event.target.value)}
+							value={updatedTitle.value}
 						/>
 						<TextField
 							variant="outlined"
@@ -143,9 +115,10 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 						Cancel
 					</Button>
 					<Button 
-						onClick={submitForm} 
+						onClick={submit} 
 						color="primary" 
 						autoFocus
+						disabled={!updatedTitle.isValid}
 					>
 						Save
 					</Button>

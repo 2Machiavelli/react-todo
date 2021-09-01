@@ -13,6 +13,7 @@ import { createTodoAction } from "../store/actions/todos.action"
 // Types
 import { ITodo } from "../types/todos.type"
 import { useDispatch } from "react-redux"
+import useInput from "@/hooks/useInput.hook"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,64 +29,23 @@ const useStyles = makeStyles((theme) => ({
 const TodoForm: React.FC = () => {
 	const classes = useStyles()
 	const dispatch = useDispatch()
-
-	let [title, setTitle] = useState("")
+	let title = useInput("", { minLength: 5, isEmpty: true, maxLength: 50 })
 	let [description, setDescription] = useState("")
-	let [titleDirty, setTitleDirty] = useState(false)
-	let [titleError, setTitleError] = useState("this field should not be empty")
-	let [formValid, setFormValid] = useState(false)
+
 
 	const todo: ITodo = {
 		id: nanoid(),
-		title,
+		title: title.value,
 		description,
 		date: Date.now(),
 		isCompleted: false
 	}
-
-	useEffect(() => {
-		
-		if(titleError) {
-			setFormValid(false)
-		} else {
-			setFormValid(true)
-		}
-		
-	}, [titleError])
 	
-	const submitForm = (): void => {
-		if (!titleError) {
-			dispatch(createTodoAction(todo))
+	const submit = (): void => {
+		dispatch(createTodoAction(todo))
 
-			setTitle("")
-			setDescription("")
-			setTitleDirty(false)
-			setTitleError("this field should not be empty")
-		}
-	}
-
-	const titleHandler = (e) => {
-		const value = e.target.value.trim()
-
-		setTitle(e.target.value)
-
-		if (value.length === 0) {
-			return setTitleError("this field should not be empty")
-		}
-
-		if (value.length < 3) {
-			return setTitleError("this field must have 3 or more digits")
-		}
-
-		if (value.length > 60) {
-			return setTitleError("this field must have not more than 60 digits")
-		}
-
-		setTitleError("")
-	}
-
-	const blurTitle = (): void => {
-		setTitleDirty(true)
+		title.setValue("")
+		setDescription("")
 	}
 
 	return (
@@ -94,16 +54,16 @@ const TodoForm: React.FC = () => {
 			noValidate
 		>
 			<TextField
-				onBlur={e => blurTitle()}
-				error={titleDirty && !!titleError}
-				helperText={titleDirty ? titleError : ""}
+				onBlur={e => title.onBlur(e)}
+				onChange={e => title.onChange(e)}
+				error={ title.isDirty && !title.isValid }
+				helperText={ title.isDirty && !title.isValid ? title.errorMessage : "" }
 				variant="outlined"
 				margin="normal"
 				required
 				fullWidth
 				label="Title"
-				value={title}
-				onChange={event => titleHandler(event)}
+				value={title.value}
 			/>
 			<TextField
 				variant="outlined"
@@ -111,14 +71,14 @@ const TodoForm: React.FC = () => {
 				fullWidth
 				label="Description"
 				value={description}
-				onChange={event => setDescription(event.target.value)}
+				onChange={e => setDescription(e.target.value)}
 			/>
 			<Button
-				disabled={!formValid}
+				disabled={!title.isValid}
 				variant="contained"
 				color="primary"
 				className={classes.submit}
-				onClick={submitForm}
+				onClick={submit}
 			>
 				Create
 			</Button>
