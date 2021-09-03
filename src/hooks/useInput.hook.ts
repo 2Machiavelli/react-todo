@@ -62,7 +62,9 @@ const useValidation = (value, validations = {}) => {
 		isValid,
 		isEmpty,
 		minLengthError,
-		errorMessage
+		errorMessage,
+		setValid,
+		setErrorMessage
 	}
 
 }
@@ -86,7 +88,8 @@ const useInput = (initValue, validations = {}) => {
 		...valid,
 		onChange,
 		onBlur,
-		setValue
+		setValue,
+		setDirty
 	}
 }
 

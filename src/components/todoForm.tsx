@@ -46,6 +46,8 @@ const TodoForm: React.FC = () => {
 
 		title.setValue("")
 		setDescription("")
+		title.setValid(true)
+		title.setDirty(false)
 	}
 
 	return (

@@ -43,6 +43,9 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 	}
 
 	const handleClose = () => {
+
+		updatedTitle.setValue(todo.title)
+		setDescription(todo.description)
 		setOpen(false)
 	}
 
