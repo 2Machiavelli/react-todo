@@ -1,6 +1,6 @@
 import React from "react"
-import TodoForm from "@/components/todoForm"
-import TodoList from "@/components/todoList"
+import TodoForm from "@/components/todo/todoForm"
+import TodoList from "@/components/todo/todoList"
 
 import { Divider } from "@material-ui/core"
 

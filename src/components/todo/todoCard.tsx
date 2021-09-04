@@ -3,11 +3,11 @@ import React from "react"
 import TodoEditDialog from "./todoEditDialog"
 
 // Redux
-import store from "../store"
 import { 
-	completeTodoAction,
-	deleteTodoAction
-} from "../store/actions/todos.action"
+	completeTodo,
+	deleteTodo
+} from "@/store/slices/todos.slice"
+
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles"
@@ -47,12 +47,12 @@ const TodoCard: React.FC<ITodoCardProps> = ({todo}: {todo: ITodo}) => {
 		return `${ todoDate.toLocaleDateString() } | ${ todoDate.getHours() }:${ updatedMinutes }`
 	}
 
-	const completeTodo = () => {
-		dispatch(completeTodoAction(todo))
+	const completeTodoHandler = () => {
+		dispatch(completeTodo(todo))
 	}
 
-	const deleteTodo = () => {
-		dispatch(deleteTodoAction(todo))
+	const deleteTodoHandler = () => {
+		dispatch(deleteTodo(todo))
 	}
 
 	return (
@@ -83,7 +83,7 @@ const TodoCard: React.FC<ITodoCardProps> = ({todo}: {todo: ITodo}) => {
 				<Button 
 					size="small" 
 					color="primary" 
-					onClick={completeTodo}
+					onClick={completeTodoHandler}
 				>
 					Complete
 				</Button>
@@ -91,7 +91,7 @@ const TodoCard: React.FC<ITodoCardProps> = ({todo}: {todo: ITodo}) => {
 				<Button 
 					size="small" 
 					color="primary" 
-					onClick={deleteTodo}
+					onClick={deleteTodoHandler}
 				>
 					Delete
 				</Button>

@@ -8,10 +8,12 @@ import {
 	Button,
 } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
-import { createTodoAction } from "../store/actions/todos.action"
+
+// Redux
+import { addTodo } from "@/store/slices/todos.slice"
 
 // Types
-import { ITodo } from "../types/todos.type"
+import { ITodo } from "../../types/todos.type"
 import { useDispatch } from "react-redux"
 import useInput from "@/hooks/useInput.hook"
 
@@ -42,7 +44,7 @@ const TodoForm: React.FC = () => {
 	}
 	
 	const submit = (): void => {
-		dispatch(createTodoAction(todo))
+		dispatch(addTodo(todo))
 
 		title.setValue("")
 		setDescription("")

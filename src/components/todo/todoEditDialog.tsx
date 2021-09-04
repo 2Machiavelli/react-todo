@@ -13,7 +13,7 @@ import { TextField } from "@material-ui/core"
 import { ITodo } from "@/types/todos.type"
 
 // Redux
-import { editTodoAction } from "../store/actions/todos.action"
+import { editTodo } from "@/store/slices/todos.slice"
 import { useDispatch } from "react-redux"
 import useInput from "@/hooks/useInput.hook"
 
@@ -60,7 +60,7 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 	}
 
 	const submit = () => {
-		dispatch(editTodoAction(editedTodo))
+		dispatch(editTodo(editedTodo))
 
 		handleClose()
 	}
