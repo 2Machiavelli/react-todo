@@ -1,7 +1,6 @@
 import { createStore, compose, combineReducers } from "redux"
 import persistState from "redux-localstorage"
-// import todosReducer from "./reducers/todos.reducer"
-import todosSlice from "./slices/todos.slice"
+import todosSlice from "@/Todo/todoSlice"
 
 const rootReducer = combineReducers({
 	todos: todosSlice

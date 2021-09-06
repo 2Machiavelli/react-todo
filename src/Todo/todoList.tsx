@@ -15,9 +15,12 @@ const useStyles = makeStyles(() => ({
 	}
 }))
 
-const TodoList: React.FC = () => {
+interface ITodoCardProps {
+	todos: ITodo[]
+}
+
+const TodoList: React.FC<ITodoCardProps> = ({todos}: {todos: ITodo[]}) => {
 	const classes = useStyles()
-	const { todos } = useTypedSelector( state => state.todos )
 	const allTodosSortedByDate = () => {
 		const sortedTodos = [...todos]
 		return sortedTodos.sort((a: ITodo, b: ITodo) =>  b.date - a.date)

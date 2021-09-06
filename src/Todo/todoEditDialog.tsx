@@ -13,7 +13,7 @@ import { TextField } from "@material-ui/core"
 import { ITodo } from "@/types/todos.type"
 
 // Redux
-import { editTodo } from "@/store/slices/todos.slice"
+import { editTodo } from "./todoSlice"
 import { useDispatch } from "react-redux"
 import useInput from "@/hooks/useInput.hook"
 
@@ -71,6 +71,7 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 				size="small" 
 				color="primary" 
 				onClick={handleClickOpen}
+				role="btn-edit"
 			>
 				Edit
 			</Button>
@@ -98,6 +99,7 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 							label="Title"
 							name="title"
 							value={updatedTitle.value}
+							role="title-input"
 						/>
 						<TextField
 							variant="outlined"
@@ -107,6 +109,7 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 							label="Description"
 							value={updatedDescription}
 							onChange={event => setDescription(event.target.value)}
+							role="description-input"
 						/>
 					</form>
 				</DialogContent>
@@ -114,14 +117,16 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 					<Button 
 						onClick={handleClose} 
 						color="primary"
+						role="btn-close"
 					>
-						Cancel
+						Close
 					</Button>
 					<Button 
 						onClick={submit} 
 						color="primary" 
 						autoFocus
 						disabled={!updatedTitle.isValid}
+						role="btn-save"
 					>
 						Save
 					</Button>

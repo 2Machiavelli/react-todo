@@ -51,7 +51,10 @@ module.exports = {
             loader: "style-loader"
           },
           {
-            loader: MiniCssExtractPlugin.loader
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: false,
+            }
           },
           {
             loader: "css-loader",

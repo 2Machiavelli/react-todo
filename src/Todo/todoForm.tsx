@@ -10,10 +10,10 @@ import {
 import { makeStyles } from "@material-ui/core/styles"
 
 // Redux
-import { addTodo } from "@/store/slices/todos.slice"
+import { addTodo } from "./todoSlice"
 
 // Types
-import { ITodo } from "../../types/todos.type"
+import { ITodo } from "@/types/todos.type"
 import { useDispatch } from "react-redux"
 import useInput from "@/hooks/useInput.hook"
 
@@ -68,6 +68,7 @@ const TodoForm: React.FC = () => {
 				fullWidth
 				label="Title"
 				value={title.value}
+				inputProps={{ "data-testid": "title-input" }}
 			/>
 			<TextField
 				variant="outlined"
@@ -76,6 +77,7 @@ const TodoForm: React.FC = () => {
 				label="Description"
 				value={description}
 				onChange={e => setDescription(e.target.value)}
+				inputProps={{ "data-testid": "description-input" }}
 			/>
 			<Button
 				disabled={!title.isValid}
@@ -83,6 +85,7 @@ const TodoForm: React.FC = () => {
 				color="primary"
 				className={classes.submit}
 				onClick={submit}
+				role="btn-create"
 			>
 				Create
 			</Button>

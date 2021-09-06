@@ -6,8 +6,7 @@ import TodoEditDialog from "./todoEditDialog"
 import { 
 	completeTodo,
 	deleteTodo
-} from "@/store/slices/todos.slice"
-
+} from "./todoSlice"
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles"
@@ -47,27 +46,21 @@ const TodoCard: React.FC<ITodoCardProps> = ({todo}: {todo: ITodo}) => {
 		return `${ todoDate.toLocaleDateString() } | ${ todoDate.getHours() }:${ updatedMinutes }`
 	}
 
-	const completeTodoHandler = () => {
-		dispatch(completeTodo(todo))
-	}
-
-	const deleteTodoHandler = () => {
-		dispatch(deleteTodo(todo))
-	}
-
 	return (
-		<Card className={classes.root}>
+		<Card className={classes.root} role="todo-card">
 			<CardContent>
 				<Typography 
 					gutterBottom 
 					variant="h5" 
 					component="h2"
+					role="title"
 				>
 					{todo.title}
 				</Typography>
 				<Typography 
 					gutterBottom 
 					variant="subtitle1"
+					role="todoDate"
 				>
 					{getTodoDate()}
 				</Typography>
@@ -75,6 +68,7 @@ const TodoCard: React.FC<ITodoCardProps> = ({todo}: {todo: ITodo}) => {
 					variant="body2" 
 					color="textSecondary" 
 					component="p"
+					role="description"
 				>
 					{todo.description}
 				</Typography>
@@ -83,7 +77,8 @@ const TodoCard: React.FC<ITodoCardProps> = ({todo}: {todo: ITodo}) => {
 				<Button 
 					size="small" 
 					color="primary" 
-					onClick={completeTodoHandler}
+					onClick={() => dispatch(completeTodo(todo))}
+					role="btn-complete"
 				>
 					Complete
 				</Button>
@@ -91,7 +86,8 @@ const TodoCard: React.FC<ITodoCardProps> = ({todo}: {todo: ITodo}) => {
 				<Button 
 					size="small" 
 					color="primary" 
-					onClick={deleteTodoHandler}
+					onClick={() => dispatch(deleteTodo(todo))}
+					role="btn-delete"
 				>
 					Delete
 				</Button>
