@@ -1,22 +1,14 @@
-// node_modules/react
 import React, { useState } from "react"
-// node_modules/material-ui
 import Button from "@material-ui/core/Button"
 import Dialog from "@material-ui/core/Dialog"
 import DialogActions from "@material-ui/core/DialogActions"
 import DialogContent from "@material-ui/core/DialogContent"
 import { makeStyles } from "@material-ui/core/styles"
 import { TextField } from "@material-ui/core"
-// node_modules/react-redux
 import { useDispatch } from "react-redux"
 
-// types
 import { ITodo } from "@/types/todos.type"
-
-// slice
 import { editTodo } from "./slice"
-
-// custom hooks
 import useInput from "@/hooks/useInput.hook"
 
 interface ITodoEditDialogProps {
@@ -89,7 +81,7 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 						noValidate
 					>
 						<TextField
-							onBlur={e => updatedTitle.onBlur()}
+							onBlur={() => updatedTitle.onBlur()}
 							onChange={e => updatedTitle.onChange(e)}
 							error={ updatedTitle.isDirty && !updatedTitle.isValid }
 							helperText={ updatedTitle.isDirty && !updatedTitle.isValid ? updatedTitle.errorMessage : "" }

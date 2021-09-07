@@ -1,7 +1,5 @@
-// node_modules/redux-toolkit
 import { createSlice } from "@reduxjs/toolkit"
 
-// types
 import { ITodosState, ITodo } from "@/types/todos.type"
 
 const initialState: ITodosState = {
@@ -26,7 +24,7 @@ const todosSlice = createSlice({
 			})
 		},
 		completeTodo(state, action) {
-			state.completedTodos.push(action.payload)
+			state.completedTodos.push({ ...action.payload, isCompleted: true })
 
 			state.todos = state.todos.filter((item: ITodo) => item.id != action.payload.id)
 		},

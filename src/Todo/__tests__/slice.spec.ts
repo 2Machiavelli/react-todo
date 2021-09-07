@@ -1,12 +1,9 @@
-// slice
 import reducer, { 
 	addTodo,
 	editTodo,
 	completeTodo,
 	deleteTodo
 } from "../slice"
-
-// types
 import { ITodosState } from "@/types/todos.type"
 
 const todoData = {

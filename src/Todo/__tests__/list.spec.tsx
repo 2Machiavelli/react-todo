@@ -1,17 +1,8 @@
-// node_modules/react
 import React from "react"
-// node_modules/testing
 import "@testing-library/jest-dom"
-import { render } from "@testing-library/react"
-// node_modules/redux
-import { Provider } from "react-redux"
-import { createStore } from "redux"
 
-// slice
-import todoSlice from "../slice"
-
-// component
 import TodoList from "../list"
+import { renderWithRedux } from "./helpers"
 
 
 const todos = [
@@ -36,20 +27,6 @@ const todos = [
 		isCompleted: false
 	}
 ]
-
-const renderWithRedux = (
-	component,
-	{ initialState = {}, store = createStore(todoSlice, initialState) } = {}
-) => {
-	return {
-		...render(
-			<Provider store={store}>
-				{component}
-			</Provider>
-		),
-		store
-	}
-}
 
 describe("<TodoList />", () => {
 	

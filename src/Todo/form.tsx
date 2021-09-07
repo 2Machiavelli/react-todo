@@ -1,20 +1,11 @@
-// node_modules/react
 import React, { useState } from "react"
-// node_modules/nanoid
 import { nanoid } from "nanoid"
-// node_modules/material-ui
 import { TextField, Button } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
-// node_modules/react-redux
 import { useDispatch } from "react-redux"
 
-// slice
 import { addTodo } from "./slice"
-
-// types
 import { ITodo } from "@/types/todos.type"
-
-// custom hooks
 import useInput from "@/hooks/useInput.hook"
 
 
@@ -58,7 +49,7 @@ const TodoForm: React.FC = () => {
 			noValidate
 		>
 			<TextField
-				onBlur={e => title.onBlur()}
+				onBlur={() => title.onBlur()}
 				onChange={e => title.onChange(e)}
 				error={ title.isDirty && !title.isValid }
 				helperText={ title.isDirty && !title.isValid ? title.errorMessage : "" }

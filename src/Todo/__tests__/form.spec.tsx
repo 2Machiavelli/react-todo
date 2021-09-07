@@ -1,32 +1,10 @@
-// node_modules/react
 import React from "react"
-// node_modules/testing
 import "@testing-library/jest-dom"
-import { render, fireEvent } from "@testing-library/react"
-// node_modules/redux
-import { Provider } from "react-redux"
-import { createStore } from "redux"
+import { fireEvent } from "@testing-library/react"
 
-// slice
-import todoSlice from "../slice"
 
-// components
 import TodoForm from "../form"
-
-const renderWithRedux = (
-	component,
-	{ initialState = {}, store = createStore(todoSlice, initialState) } = {}
-) => {
-	return {
-		...render(
-			<Provider store={store}>
-				{component}
-			</Provider>
-		),
-		store
-	}
-}
-
+import { renderWithRedux } from "./helpers"
 
 describe("<TodoForm />", () => {
 	

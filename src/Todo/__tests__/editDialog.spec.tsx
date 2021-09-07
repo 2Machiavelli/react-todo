@@ -1,17 +1,9 @@
-// node_modules/react
 import React from "react"
-// node_modules/testing
 import "@testing-library/jest-dom"
-import { render, fireEvent } from "@testing-library/react"
-// node_modules/redux
-import { Provider } from "react-redux"
-import { createStore } from "redux"
+import { fireEvent } from "@testing-library/react"
 
-// components
 import TodoCardEditDialog from "../editDialog"
-
-// slice
-import todoSlice from "../slice"
+import { renderWithRedux } from "./helpers"
 
 const todoData = {
 	id: "G48a_bJwSi0SB6xSeJOtl", 
@@ -21,19 +13,6 @@ const todoData = {
 	isCompleted: false
 }
 
-const renderWithRedux = (
-	component,
-	{ initialState = {}, store = createStore(todoSlice, initialState) } = {}
-) => {
-	return {
-		...render(
-			<Provider store={store}>
-				{component}
-			</Provider>
-		),
-		store
-	}
-}
 
 describe("<TodoEditCard />", () => {
 
