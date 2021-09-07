@@ -1,10 +1,13 @@
+// slice
 import reducer, { 
 	addTodo,
 	editTodo,
 	completeTodo,
 	deleteTodo
-} from "../todoSlice"
-import { ITodosState } from "../../types/todos.type"
+} from "../slice"
+
+// types
+import { ITodosState } from "@/types/todos.type"
 
 const todoData = {
 	id: "G48a_bJwSi0SB6xSeJOtl", 

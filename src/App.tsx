@@ -1,7 +1,10 @@
+// node_modules/react
 import React from "react"
-import TodoPage from "./views/todoPage" 
-// Material UI
+// node_modules/material-ui
 import { Container } from "@material-ui/core"
+
+// components
+import TodoPage from "@/Todo/todoPage" 
 
 const App: React.FC = () => {
 	return (

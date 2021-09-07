@@ -1,11 +1,17 @@
+// node_modules/react
 import React from "react"
+// node_modules/testing
 import "@testing-library/jest-dom"
 import { render, fireEvent } from "@testing-library/react"
+// node_modules/redux
 import { Provider } from "react-redux"
 import { createStore } from "redux"
 
-import todoSlice from "../todoSlice"
-import TodoForm from "../todoForm"
+// slice
+import todoSlice from "../slice"
+
+// components
+import TodoForm from "../form"
 
 const renderWithRedux = (
 	component,
@@ -44,7 +50,7 @@ describe("<TodoForm />", () => {
 		const btnCreate = getByRole("btn-create")
 		
 		fireEvent.click(btnCreate)
-		
+
 		expect(store.getState().todos[0].title).toBe("code the code")
 		expect(store.getState().todos[0].description).toBe("do your best")
 	})

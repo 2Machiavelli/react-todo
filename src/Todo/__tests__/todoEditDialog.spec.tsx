@@ -1,11 +1,17 @@
+// node_modules/react
 import React from "react"
+// node_modules/testing
 import "@testing-library/jest-dom"
 import { render, fireEvent } from "@testing-library/react"
+// node_modules/redux
 import { Provider } from "react-redux"
 import { createStore } from "redux"
 
-import TodoCardEditDialog from "../todoEditDialog"
-import todoSlice from "../todoSlice"
+// components
+import TodoCardEditDialog from "../editDialog"
+
+// slice
+import todoSlice from "../slice"
 
 const todoData = {
 	id: "G48a_bJwSi0SB6xSeJOtl", 

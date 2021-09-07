@@ -1,11 +1,12 @@
-// Basic Setup
+// node_modules/react
 import React from "react"
-import TodoCard from "./todoCard"
-
-// Material UI
+// node_modules/material-ui
 import { Grid, makeStyles } from "@material-ui/core"
 
-// Types
+// components
+import TodoCard from "./card"
+
+// types
 import { ITodo } from "@/types/todos.type"
 
 const useStyles = makeStyles(() => ({

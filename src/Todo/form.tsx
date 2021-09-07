@@ -1,20 +1,20 @@
-// Basic Setup
+// node_modules/react
 import React, { useState } from "react"
+// node_modules/nanoid
 import { nanoid } from "nanoid"
-
-// Material UI
-import {
-	TextField,
-	Button,
-} from "@material-ui/core"
+// node_modules/material-ui
+import { TextField, Button } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
-
-// Redux
-import { addTodo } from "./todoSlice"
-
-// Types
-import { ITodo } from "@/types/todos.type"
+// node_modules/react-redux
 import { useDispatch } from "react-redux"
+
+// slice
+import { addTodo } from "./slice"
+
+// types
+import { ITodo } from "@/types/todos.type"
+
+// custom hooks
 import useInput from "@/hooks/useInput.hook"
 
 

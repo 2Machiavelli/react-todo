@@ -1,9 +1,8 @@
+// node_modules/redux-toolkit
 import { createSlice } from "@reduxjs/toolkit"
 
-import {
-	ITodosState,
-	ITodo
-} from "@/types/todos.type"
+// types
+import { ITodosState, ITodo } from "@/types/todos.type"
 
 const initialState: ITodosState = {
 	todos: [],

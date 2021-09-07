@@ -1,11 +1,17 @@
+// node_modules/react
 import React from "react"
+// node_modules/testing
 import "@testing-library/jest-dom"
 import { render } from "@testing-library/react"
+// node_modules/redux
 import { Provider } from "react-redux"
 import { createStore } from "redux"
 
-import todoSlice from "../todoSlice"
-import TodoList from "../todoList"
+// slice
+import todoSlice from "../slice"
+
+// component
+import TodoList from "../list"
 
 
 const todos = [

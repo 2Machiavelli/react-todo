@@ -1,14 +1,8 @@
-// Basic Setup
+// node_modules
 import React from "react"
-import TodoEditDialog from "./todoEditDialog"
-
-// Redux
-import { 
-	completeTodo,
-	deleteTodo
-} from "./todoSlice"
-
-// Material UI
+// node_modules/redux
+import { useDispatch } from "react-redux"
+// node_modules/material-ui
 import { makeStyles } from "@material-ui/core/styles"
 import Card from "@material-ui/core/Card"
 import CardActions from "@material-ui/core/CardActions"
@@ -16,9 +10,14 @@ import CardContent from "@material-ui/core/CardContent"
 import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 
-// Types
+// components
+import TodoEditDialog from "./editDialog"
+
+// slice
+import { completeTodo, deleteTodo } from "./slice"
+
+// types
 import { ITodo } from "@/types/todos.type"
-import { useDispatch } from "react-redux"
 
 interface ITodoCardProps {
 	todo: ITodo

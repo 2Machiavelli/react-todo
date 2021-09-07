@@ -1,12 +1,17 @@
+// node_modules/react
 import React from "react"
+// node_modules/testing
 import "@testing-library/jest-dom"
 import { render, fireEvent } from "@testing-library/react"
+// node_modules/redux
 import { Provider } from "react-redux"
-import store from "@/store"
 import { createStore } from "redux"
 
-import TodoCard from "../todoCard"
-import todoSlice from "../todoSlice"
+// components
+import TodoCard from "../card"
+
+// slice
+import todoSlice from "../slice"
 
 const todoData = {
 	id: "G48a_bJwSi0SB6xSeJOtl", 
@@ -34,11 +39,7 @@ const renderWithRedux = (
 describe("<TodoCard />", () => {
 
 	it("should check the props", () => {
-		const { getByRole } = render(
-			<Provider store={store}>
-				<TodoCard todo={todoData}/>
-			</Provider>
-		)
+		const { getByRole } = renderWithRedux(<TodoCard todo={todoData}/>)
 
 		const title = getByRole("title")
 		const description = getByRole("description")
