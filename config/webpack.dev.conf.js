@@ -1,28 +1,28 @@
-const merge               = require("webpack-merge")
-const baseWebpackConfig   = require("./webpack.base.conf")
-const ESLintPlugin        = require("eslint-webpack-plugin")
+const merge               = import("webpack-merge")
+const baseWebpackConfig   = import("./webpack.base.conf")
+const ESLintPlugin        = import("eslint-webpack-plugin")
 
 const devWebpackConfig = merge(baseWebpackConfig, {
-  mode: "development",
-  output: {
-    publicPath: "/"
-  },
-  devServer: {
-    contentBase: baseWebpackConfig.externals.paths.dist,
-    port: 8080,
-    historyApiFallback: true,
-    overlay: {
-      warnings: true,
-      errors: true
-    }
-  },
-  plugins: [
-    new ESLintPlugin({
-      extensions: ["ts", "js", "tsx", "jsx"]
-    }),
-  ]
+	mode: "development",
+	output: {
+		publicPath: "/"
+	},
+	devServer: {
+		contentBase: baseWebpackConfig.externals.paths.dist,
+		port: 8080,
+		historyApiFallback: true,
+		overlay: {
+			warnings: true,
+			errors: true
+		}
+	},
+	plugins: [
+		new ESLintPlugin({
+			extensions: ["ts", "js", "tsx", "jsx"]
+		}),
+	]
 })
 
 module.exports = new Promise((resolve) => {
-  resolve(devWebpackConfig)
+	resolve(devWebpackConfig)
 })
