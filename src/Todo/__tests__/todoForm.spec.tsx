@@ -44,9 +44,7 @@ describe("<TodoForm />", () => {
 		const btnCreate = getByRole("btn-create")
 		
 		fireEvent.click(btnCreate)
-
-		console.log(store.getState())
-
+		
 		expect(store.getState().todos[0].title).toBe("code the code")
 		expect(store.getState().todos[0].description).toBe("do your best")
 	})

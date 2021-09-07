@@ -87,7 +87,7 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 						noValidate
 					>
 						<TextField
-							onBlur={e => updatedTitle.onBlur(e)}
+							onBlur={e => updatedTitle.onBlur()}
 							onChange={e => updatedTitle.onChange(e)}
 							error={ updatedTitle.isDirty && !updatedTitle.isValid }
 							helperText={ updatedTitle.isDirty && !updatedTitle.isValid ? updatedTitle.errorMessage : "" }

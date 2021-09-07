@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const useValidation = (value, validations = {}) => {
+const useValidation = (value: string, validations = {}) => {
 	const trimmedValue = value.trim()
 	const [isEmpty, setEmpty] = useState(true)
 	const [minLengthError, setMinLengthError] = useState(false)
@@ -62,6 +62,7 @@ const useValidation = (value, validations = {}) => {
 		isValid,
 		isEmpty,
 		minLengthError,
+		maxLengthError,
 		errorMessage,
 		setValid,
 		setErrorMessage
@@ -69,7 +70,7 @@ const useValidation = (value, validations = {}) => {
 
 }
 
-const useInput = (initValue, validations = {}) => {
+const useInput = (initValue: string, validations = {}) => {
 	const [value, setValue] = useState(initValue)
 	const [isDirty, setDirty] = useState(false)
 	const valid = useValidation(value, validations)
@@ -78,7 +79,7 @@ const useInput = (initValue, validations = {}) => {
 		setValue(e.target.value)
 	}
 
-	const onBlur = (e) => {
+	const onBlur = () => {
 		setDirty(true)
 	}
 

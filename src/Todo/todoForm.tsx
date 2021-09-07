@@ -1,5 +1,5 @@
 // Basic Setup
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { nanoid } from "nanoid"
 
 // Material UI
@@ -31,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
 const TodoForm: React.FC = () => {
 	const classes = useStyles()
 	const dispatch = useDispatch()
-	let title = useInput("", { minLength: 5, isEmpty: true, maxLength: 50 })
-	let [description, setDescription] = useState("")
+	const title = useInput("", { minLength: 5, isEmpty: true, maxLength: 50 })
+	const [description, setDescription] = useState("")
 
 
 	const todo: ITodo = {
@@ -58,7 +58,7 @@ const TodoForm: React.FC = () => {
 			noValidate
 		>
 			<TextField
-				onBlur={e => title.onBlur(e)}
+				onBlur={e => title.onBlur()}
 				onChange={e => title.onChange(e)}
 				error={ title.isDirty && !title.isValid }
 				helperText={ title.isDirty && !title.isValid ? title.errorMessage : "" }

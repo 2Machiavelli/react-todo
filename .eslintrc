@@ -1,14 +1,19 @@
 {
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
     "quotes": [2, "double", { "avoidEscape": true }],
     "semi": [2, "never"],
-    "no-unused-vars": "off",
     "no-undef": "off",
-    "indent": ["error", "tab"]
+    "indent": ["error", "tab"],
+    "no-console": 2
   },
   "env": {
     "es6": true,
@@ -27,5 +32,5 @@
       "version": 27
     }
   },
-  "parser": "@babel/eslint-parser"
+  "parser": "@typescript-eslint/parser"
 }

@@ -6,7 +6,6 @@ import TodoCard from "./todoCard"
 import { Grid, makeStyles } from "@material-ui/core"
 
 // Types
-import { useTypedSelector } from "@/hooks/useTypedSelector.hook"
 import { ITodo } from "@/types/todos.type"
 
 const useStyles = makeStyles(() => ({
