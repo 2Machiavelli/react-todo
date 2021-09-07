@@ -31,20 +31,7 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 	const updatedTitle = useInput(todo.title, { minLength: 5, isEmpty: true, maxLength: 50 })
 	const [updatedDescription, setDescription] = useState(todo.description)
 	const dispatch = useDispatch()
-
-	const handleClickOpen = () => {
-		setOpen(true)
-	}
-
-	const handleClose = () => {
-
-		updatedTitle.setValue(todo.title)
-		setDescription(todo.description)
-		setOpen(false)
-	}
-
 	const classes = useStyles()
-
 	const editedTodo: ITodo = {
 		id: todo.id,
 		title: updatedTitle.value,
@@ -56,7 +43,7 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 	const submit = () => {
 		dispatch(editTodo(editedTodo))
 
-		handleClose()
+		setOpen(false)
 	}
 
 	return (
@@ -64,14 +51,14 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 			<Button 
 				size="small" 
 				color="primary" 
-				onClick={handleClickOpen}
+				onClick={() => setOpen(true)}
 				role="btn-edit"
 			>
 				Edit
 			</Button>
 			<Dialog
 				open={open}
-				onClose={handleClose}
+				onClose={() => setOpen(false)}
 				aria-labelledby="alert-dialog-title"
 				aria-describedby="alert-dialog-description"
 			>
@@ -109,7 +96,7 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 				</DialogContent>
 				<DialogActions>
 					<Button 
-						onClick={handleClose} 
+						onClick={() => setOpen(false)}
 						color="primary"
 						role="btn-close"
 					>
