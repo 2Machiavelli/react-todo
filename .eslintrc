@@ -10,6 +10,7 @@
   ],
   "rules": {
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-var-requires": 0,
     "quotes": [2, "double", { "avoidEscape": true }],
     "semi": [2, "never"],
     "no-undef": "off",
@@ -31,6 +32,9 @@
   "settings": {
     "jest": {
       "version": 27
+    },
+    "react": {
+      "version": "detect"
     }
   },
   "parser": "@typescript-eslint/parser"
