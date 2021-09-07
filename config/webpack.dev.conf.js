@@ -1,6 +1,6 @@
-const merge               = import("webpack-merge")
-const baseWebpackConfig   = import("./webpack.base.conf")
-const ESLintPlugin        = import("eslint-webpack-plugin")
+const merge               = require("webpack-merge")
+const baseWebpackConfig   = require("./webpack.base.conf")
+const ESLintPlugin        = require("eslint-webpack-plugin")
 
 const devWebpackConfig = merge(baseWebpackConfig, {
 	mode: "development",

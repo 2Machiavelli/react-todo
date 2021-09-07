@@ -1,6 +1,6 @@
-const path                            = import("path")
-const MiniCssExtractPlugin            = import("mini-css-extract-plugin")
-const HtmlWebpackPlugin               = import("html-webpack-plugin")
+const path                            = require("path")
+const MiniCssExtractPlugin            = require("mini-css-extract-plugin")
+const HtmlWebpackPlugin               = require("html-webpack-plugin")
 
 const PATHS = {
 	src: path.join(__dirname, "../src"),
