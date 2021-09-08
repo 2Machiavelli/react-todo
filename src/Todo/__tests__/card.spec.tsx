@@ -17,7 +17,7 @@ const todoData = {
 
 
 
-describe("<TodoCard />", () => {
+describe("<Card />", () => {
 
 	it("should check the props", () => {
 		const { getByRole } = renderWithRedux(<TodoCard todo={todoData}/>)
@@ -50,7 +50,7 @@ describe("<TodoCard />", () => {
 		fireEvent.click(btnComplete)
 		fireEvent.click(btnDelete)
 
-		expect(store.getState().completedTodos[0]).toEqual(todoData)
+		expect(store.getState().completedTodos[0]).toEqual({...todoData, isCompleted: true})
 		expect(store.getState().todos.length).toBe(0)
 	})
 

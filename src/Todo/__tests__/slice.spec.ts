@@ -52,7 +52,7 @@ describe("Todo Slice", () => {
 			completedTodos: []
 		}
 
-		expect(reducer(initialState, completeTodo(todoData)).completedTodos[0]).toBe(todoData)
+		expect(reducer(initialState, completeTodo(todoData)).completedTodos[0]).toStrictEqual({ ...todoData, isCompleted: true })
 	})
 	
 	it("should delete todo", () => {
