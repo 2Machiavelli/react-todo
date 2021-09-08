@@ -16,9 +16,13 @@ interface ITodoCardProps {
 
 const TodoList: React.FC<ITodoCardProps> = ({todos}: {todos: ITodo[]}) => {
 	const classes = useStyles()
-	const allTodosSortedByDate = () => {
-		const sortedTodos = [...todos]
-		return sortedTodos.sort((a: ITodo, b: ITodo) =>  b.date - a.date)
+
+	const getTodoDate = (todo: ITodo): string => {
+		const todoDate = new Date(todo.date)
+		const minutes = todoDate.getMinutes()
+		const updatedMinutes =  minutes >= 10 ? minutes : `0${ minutes }`
+
+		return `${ todoDate.toLocaleDateString() } | ${ todoDate.getHours() }:${ updatedMinutes }`
 	}
 
 	return (
@@ -30,8 +34,12 @@ const TodoList: React.FC<ITodoCardProps> = ({todos}: {todos: ITodo[]}) => {
 				alignItems="center"
 			>
 				{ 
-					allTodosSortedByDate().map((value: ITodo) => {
-						return <TodoCard key={value.id} todo={value} />
+					todos.map((todo: ITodo) => {
+						return <TodoCard 
+							key={todo.id} 
+							todo={todo}
+							todoDate={getTodoDate(todo)} 
+						/>
 					})
 				}
 			</Grid>

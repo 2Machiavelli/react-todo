@@ -4,7 +4,7 @@ import { TextField, Button } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles"
 import { useDispatch } from "react-redux"
 
-import { addTodo } from "./slice"
+import { addTodo } from "@/Todo/slice"
 import { ITodo } from "@/types/todos.type"
 import useInput from "@/hooks/useInput.hook"
 

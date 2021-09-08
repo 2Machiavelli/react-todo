@@ -8,11 +8,12 @@ import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 
 import TodoEditDialog from "./editDialog"
-import { completeTodo, deleteTodo } from "./slice"
+import { completeTodo, deleteTodo } from "@/Todo/slice"
 import { ITodo } from "@/types/todos.type"
 
 interface ITodoCardProps {
-	todo: ITodo
+	todo: ITodo,
+	todoDate: string
 }
 
 const useStyles = makeStyles({
@@ -25,17 +26,9 @@ const useStyles = makeStyles({
 	}
 })
 
-const TodoCard: React.FC<ITodoCardProps> = ({todo}: {todo: ITodo}) => {
+const TodoCard: React.FC<ITodoCardProps> = ({todo, todoDate}: {todo: ITodo, todoDate: string}) => {
 	const classes = useStyles()
 	const dispatch = useDispatch()
-
-	const getTodoDate = (): string => {
-		const todoDate = new Date(todo.date)
-		const minutes = todoDate.getMinutes()
-		const updatedMinutes =  minutes >= 10 ? minutes : `0${ minutes }`
-
-		return `${ todoDate.toLocaleDateString() } | ${ todoDate.getHours() }:${ updatedMinutes }`
-	}
 
 	return (
 		<Card className={classes.root} role="todo-card">
@@ -53,7 +46,7 @@ const TodoCard: React.FC<ITodoCardProps> = ({todo}: {todo: ITodo}) => {
 					variant="subtitle1"
 					role="todoDate"
 				>
-					{getTodoDate()}
+					{todoDate}
 				</Typography>
 				<Typography 
 					variant="body2" 
