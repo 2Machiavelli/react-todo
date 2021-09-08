@@ -3,7 +3,7 @@ import reducer, {
 	editTodo,
 	completeTodo,
 	deleteTodo
-} from "../slice"
+} from "@/Todo/slice"
 import { ITodosState } from "@/types/todos.type"
 
 const todoData = {

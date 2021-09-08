@@ -2,10 +2,8 @@ import React from "react"
 import "@testing-library/jest-dom"
 import { fireEvent } from "@testing-library/react"
 
-import TodoCard from "../card"
+import Card from "@/Todo/components/card"
 import { renderWithRedux } from "./helpers"
-
-
 
 const todoData = {
 	id: "G48a_bJwSi0SB6xSeJOtl", 
@@ -15,12 +13,10 @@ const todoData = {
 	isCompleted: false
 }
 
-
-
 describe("<Card />", () => {
 
 	it("should check the props", () => {
-		const { getByRole } = renderWithRedux(<TodoCard todo={todoData}/>)
+		const { getByRole } = renderWithRedux(<Card todo={todoData} todoDate="9/8/2021 | 18:04"/>)
 
 		const title = getByRole("title")
 		const description = getByRole("description")
@@ -28,12 +24,12 @@ describe("<Card />", () => {
 
 		expect(title.textContent).toBe("title")
 		expect(description.textContent).toBe("description")
-		expect(todoDate.textContent).toBe("6/23/2021 | 21:01")
+		expect(todoDate.textContent).toBe("9/8/2021 | 18:04")
 	})
 
 	it("should check events", () => {
 		const { getByRole, store } = renderWithRedux(
-			<TodoCard todo={todoData}/>,
+			<Card todo={todoData} todoDate="9/8/2021 | 18:04"/>,
 			{
 				initialState: { 
 					todos: [

@@ -7,11 +7,11 @@ module.exports = {
 			statement: 60
 		}
 	},
-	moduleFileExtensions: [
-		"ts",
-		"tsx",
-		"js"
-	],
+	// moduleFileExtensions: [
+	// 	"ts",
+	// 	"tsx",
+	// 	"js"
+	// ],
 	moduleNameMapper: {
 		"^@/(.*)$": "<rootDir>/src/$1",
 	},
@@ -30,5 +30,6 @@ module.exports = {
 			"tsConfigFile": "tsconfig.json"
 		}
 	},
-	testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(tsx?)$"
+	testRegex: "/__tests__/.*.spec.(ts|tsx)?$"
+	
 }

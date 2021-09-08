@@ -2,7 +2,7 @@ import React from "react"
 import "@testing-library/jest-dom"
 import { fireEvent } from "@testing-library/react"
 
-import TodoCardEditDialog from "../editDialog"
+import CardEditDialog from "@/Todo/components/editDialog"
 import { renderWithRedux } from "./helpers"
 
 const todoData = {
@@ -14,10 +14,10 @@ const todoData = {
 }
 
 
-describe("<TodoEditCard />", () => {
+describe("<EditCard />", () => {
 
 	it("should check the props", () => {
-		const { getByDisplayValue, getByRole } = renderWithRedux(<TodoCardEditDialog todo={todoData}/>)
+		const { getByDisplayValue, getByRole } = renderWithRedux(<CardEditDialog todo={todoData}/>)
 
 		const btnEdit = getByRole("btn-edit")
 		fireEvent.click(btnEdit)
@@ -31,7 +31,7 @@ describe("<TodoEditCard />", () => {
 
 	it("should save the edited todo", () => {
 		const { getByRole, store } = renderWithRedux(
-			<TodoCardEditDialog todo={todoData}/>,
+			<CardEditDialog todo={todoData}/>,
 			{
 				initialState: { 
 					todos: [

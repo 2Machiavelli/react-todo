@@ -3,14 +3,14 @@ import "@testing-library/jest-dom"
 import { fireEvent } from "@testing-library/react"
 
 
-import TodoForm from "../form"
+import Form from "@/Todo/components/form"
 import { renderWithRedux } from "./helpers"
 
-describe("<TodoForm />", () => {
+describe("<Form />", () => {
 	
 	it("should create todo", () => {
 		const { getByTestId, getByRole, store } = renderWithRedux(
-			<TodoForm />,
+			<Form />,
 			{
 				initialState: { 
 					todos: [],
