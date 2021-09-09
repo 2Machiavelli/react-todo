@@ -112,7 +112,7 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 						/>
 					</form>
 				</DialogContent>
-				<DialogActions>
+				<DialogActions disableSpacing={true}>
 					<Button 
 						onClick={() => handleClose()}
 						color="primary"

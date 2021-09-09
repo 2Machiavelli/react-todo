@@ -3,6 +3,7 @@ import { Grid, makeStyles } from "@material-ui/core"
 
 import TodoCard from "./card"
 import { ITodo } from "@/types/todos.type"
+import getTodoDate from "@/Todo/components/utils/getTodoDate"
 
 const useStyles = makeStyles(() => ({
 	todoList: {
@@ -16,14 +17,6 @@ interface ITodoCardProps {
 
 const TodoList: React.FC<ITodoCardProps> = ({todos}: {todos: ITodo[]}) => {
 	const classes = useStyles()
-
-	const getTodoDate = (todo: ITodo): string => {
-		const todoDate = new Date(todo.date)
-		const minutes = todoDate.getMinutes()
-		const updatedMinutes =  minutes >= 10 ? minutes : `0${ minutes }`
-
-		return `${ todoDate.toLocaleDateString() } | ${ todoDate.getHours() }:${ updatedMinutes }`
-	}
 
 	return (
 		<div className={classes.todoList}>

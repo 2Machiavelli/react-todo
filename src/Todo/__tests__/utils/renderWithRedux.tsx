@@ -3,9 +3,9 @@ import { Provider } from "react-redux"
 import { createStore } from "redux"
 import { render } from "@testing-library/react"
 
-import todoSlice from "../slice"
+import todoSlice from "../../slice"
 
-export const renderWithRedux = (
+const renderWithRedux = (
 	component: ReactElement,
 	{ initialState = {}, store = createStore(todoSlice, initialState) } = {}
 ) => {
@@ -18,3 +18,5 @@ export const renderWithRedux = (
 		store
 	}
 }
+
+export default renderWithRedux

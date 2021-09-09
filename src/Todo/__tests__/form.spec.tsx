@@ -4,7 +4,7 @@ import { fireEvent } from "@testing-library/react"
 
 
 import Form from "@/Todo/components/form"
-import { renderWithRedux } from "./helpers"
+import renderWithRedux from "./utils/renderWithRedux"
 
 describe("<Form />", () => {
 	

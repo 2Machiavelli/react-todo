@@ -2,8 +2,7 @@ import React from "react"
 import "@testing-library/jest-dom"
 
 import List from "@/Todo/components/list"
-import { renderWithRedux } from "./helpers"
-
+import renderWithRedux from "./utils/renderWithRedux"
 
 const todos = [
 	{

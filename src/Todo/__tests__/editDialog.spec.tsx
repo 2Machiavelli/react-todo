@@ -3,7 +3,7 @@ import "@testing-library/jest-dom"
 import { fireEvent } from "@testing-library/react"
 
 import CardEditDialog from "@/Todo/components/editDialog"
-import { renderWithRedux } from "./helpers"
+import renderWithRedux from "./utils/renderWithRedux"
 
 const todoData = {
 	id: "G48a_bJwSi0SB6xSeJOtl", 
