@@ -40,6 +40,24 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 		date: Date.now()
 	}
 
+	const handleOpen = (): void => {
+		updatedTitle.setValue(todo.title)
+		setDescription(todo.description)
+
+		setOpen(true)
+	}
+
+	const handleClose = (): void => {
+		resetForm()
+
+		setOpen(false)
+	}
+
+	const resetForm = () => {
+		updatedTitle.setValue("")
+		setDescription("")
+	}
+
 	const submit = () => {
 		dispatch(editTodo(editedTodo))
 
@@ -51,14 +69,14 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 			<Button 
 				size="small" 
 				color="primary" 
-				onClick={() => setOpen(true)}
+				onClick={() => handleOpen()}
 				role="btn-edit"
 			>
 				Edit
 			</Button>
 			<Dialog
 				open={open}
-				onClose={() => setOpen(false)}
+				onClose={() => handleClose()}
 				aria-labelledby="alert-dialog-title"
 				aria-describedby="alert-dialog-description"
 			>
@@ -96,11 +114,19 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 				</DialogContent>
 				<DialogActions>
 					<Button 
-						onClick={() => setOpen(false)}
+						onClick={() => handleClose()}
 						color="primary"
 						role="btn-close"
 					>
 						Close
+					</Button>
+					<Button 
+						onClick={resetForm} 
+						color="primary" 
+						autoFocus
+						role="btn-reset"
+					>
+						Reset
 					</Button>
 					<Button 
 						onClick={submit} 
