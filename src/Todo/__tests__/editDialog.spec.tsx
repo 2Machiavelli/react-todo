@@ -7,8 +7,8 @@ import renderWithRedux from "./utils/renderWithRedux"
 
 const todoData = {
 	id: "G48a_bJwSi0SB6xSeJOtl", 
-	title: "newTitle", 
-	description: "newDescription", 
+	title: "title", 
+	description: "description", 
 	date: 1624471319925,
 	isCompleted: false
 }
@@ -22,15 +22,31 @@ describe("<EditCard />", () => {
 		const btnEdit = getByRole("btn-edit")
 		fireEvent.click(btnEdit)
 
-		const titleInput = getByDisplayValue("newTitle") as HTMLInputElement
-		const descriptionInput = getByDisplayValue("newDescription") as HTMLInputElement
+		const titleInput = getByDisplayValue("title") as HTMLInputElement
+		const descriptionInput = getByDisplayValue("description") as HTMLInputElement
+		
+		expect(titleInput.value).toBe("title")
+		expect(descriptionInput.value).toBe("description")
+	})
 
-		expect(titleInput.value).toBe("newTitle")
-		expect(descriptionInput.value).toBe("newDescription")
+	it("should check the reset btn", () => {
+		const { getByDisplayValue, getByRole } = renderWithRedux(<CardEditDialog todo={todoData}/>)
+
+		const btnEdit = getByRole("btn-edit")
+		fireEvent.click(btnEdit)
+
+		const titleInput = getByDisplayValue("title") as HTMLInputElement
+		const descriptionInput = getByDisplayValue("description") as HTMLInputElement
+
+		const btnReset = getByRole("btn-reset")
+		fireEvent.click(btnReset)
+
+		expect(titleInput.value).toBe("")
+		expect(descriptionInput.value).toBe("")
 	})
 
 	it("should save the edited todo", () => {
-		const { getByRole, store } = renderWithRedux(
+		const { getByRole, store, getByTestId } = renderWithRedux(
 			<CardEditDialog todo={todoData}/>,
 			{
 				initialState: { 
@@ -50,13 +66,18 @@ describe("<EditCard />", () => {
 
 		const btnEdit = getByRole("btn-edit")
 		fireEvent.click(btnEdit)
+
+		const titleInput = getByTestId("title-input")
+		const descriptionInput = getByTestId("description-input")
+
+		fireEvent.change(titleInput, {target: {value: "new title"}})
+		fireEvent.change(descriptionInput, {target: {value: "new description"}})
 		
 		const btnSave = getByRole("btn-save")
-		// save the todo date from the props
 		fireEvent.click(btnSave)
 
-		expect(store.getState().todos[0].title).toBe("newTitle")
-		expect(store.getState().todos[0].description).toBe("newDescription")
+		expect(store.getState().todos[0].title).toBe("new title")
+		expect(store.getState().todos[0].description).toBe("new description")
 	})
 
 })

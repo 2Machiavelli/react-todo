@@ -98,7 +98,7 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 							label="Title"
 							name="title"
 							value={updatedTitle.value}
-							role="title-input"
+							inputProps={{ "data-testid": "title-input" }}
 						/>
 						<TextField
 							variant="outlined"
@@ -108,7 +108,7 @@ const TodoEditDialog: React.FC<ITodoEditDialogProps> = ({todo}: { todo: ITodo })
 							label="Description"
 							value={updatedDescription}
 							onChange={event => setDescription(event.target.value)}
-							role="description-input"
+							inputProps={{ "data-testid": "description-input" }}
 						/>
 					</form>
 				</DialogContent>
