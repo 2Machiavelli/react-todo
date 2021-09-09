@@ -1,4 +1,4 @@
-import { ITodo } from "@/types/todos.type"
+import { ITodo } from "@/Todo/types"
 
 const sortAllTodoByDate = (todos: ITodo[]): ITodo[] => {
   const sortedTodos = [...todos]

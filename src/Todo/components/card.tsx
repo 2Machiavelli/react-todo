@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography"
 
 import TodoEditDialog from "./editDialog"
 import { completeTodo, deleteTodo } from "@/Todo/slice"
-import { ITodo } from "@/types/todos.type"
+import { ITodo } from "@/Todo/types"
 
 interface ITodoCardProps {
 	todo: ITodo,

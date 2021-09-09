@@ -1,4 +1,4 @@
-import { ITodo } from "@/types/todos.type"
+import { ITodo } from "@/Todo/types"
 
 const getTodoDate = (todo: ITodo): string => {
   const todoDate = new Date(todo.date)

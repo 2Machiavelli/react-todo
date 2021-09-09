@@ -2,7 +2,7 @@ import React from "react"
 import { Grid, makeStyles } from "@material-ui/core"
 
 import TodoCard from "./card"
-import { ITodo } from "@/types/todos.type"
+import { ITodo } from "@/Todo/types"
 import getTodoDate from "@/Todo/components/utils/getTodoDate"
 
 const useStyles = makeStyles(() => ({

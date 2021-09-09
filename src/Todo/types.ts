@@ -13,5 +13,5 @@ export interface ITodosAction {
 
 export interface ITodosState {
 	todos: ITodo[],
-	completedTodos: ITodo[],
+	completedTodos: ITodo[]
 }

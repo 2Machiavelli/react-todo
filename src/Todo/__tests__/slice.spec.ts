@@ -4,7 +4,7 @@ import reducer, {
 	completeTodo,
 	deleteTodo
 } from "@/Todo/slice"
-import { ITodosState } from "@/types/todos.type"
+import { ITodosState } from "@/Todo/types"
 
 const todoData = {
 	id: "G48a_bJwSi0SB6xSeJOtl", 

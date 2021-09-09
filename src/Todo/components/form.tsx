@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import { useDispatch } from "react-redux"
 
 import { addTodo } from "@/Todo/slice"
-import { ITodo } from "@/types/todos.type"
+import { ITodo } from "@/Todo/types"
 import useInput from "@/hooks/useInput.hook"
 
 

@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import { TextField } from "@material-ui/core"
 import { useDispatch } from "react-redux"
 
-import { ITodo } from "@/types/todos.type"
+import { ITodo } from "@/Todo/types"
 import { editTodo } from "@/Todo/slice"
 import useInput from "@/hooks/useInput.hook"
 
