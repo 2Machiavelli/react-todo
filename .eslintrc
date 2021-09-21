@@ -1,13 +1,21 @@
 {
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-var-requires": 0,
     "quotes": [2, "double", { "avoidEscape": true }],
     "semi": [2, "never"],
-    "no-unused-vars": "warn",
-    "indent": ["error", "tab"]
+    "no-undef": "off",
+    "indent": ["error", "tab"],
+    "no-console": 0
   },
   "env": {
     "es6": true,
@@ -24,6 +32,10 @@
   "settings": {
     "jest": {
       "version": 27
+    },
+    "react": {
+      "version": "detect"
     }
-  }
+  },
+  "parser": "@typescript-eslint/parser"
 }

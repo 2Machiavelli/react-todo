@@ -1,10 +1,14 @@
 import React from "react"
-import { Button } from "@material-ui/core"
+import { Container } from "@material-ui/core"
 
-const App = () => (
-	<div>
-		<Button color="primary">Hello World</Button>
-	</div>
-)
+import TodoPage from "@/Todo/wrapper" 
+
+const App: React.FC = () => {
+	return (
+		<Container maxWidth="sm">
+			<TodoPage />
+		</Container>
+	)
+}
 
 export default App
